@@ -8,7 +8,6 @@ const xss = require('xss-clean');
 const rateLimiter = require('express-rate-limit');
 
 
-
 const express = require('express');
 const app = express();
 
@@ -47,6 +46,7 @@ const { roleAuthenticationMiddleware } = require('./middleware/roleAuthenticatio
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/user', authenticateUser, roleAuthenticationMiddleware('user'), userRouter)
+console.log("Complaints route loaded");
 app.use('/api/v1/complaints', authenticateUser, roleAuthenticationMiddleware('user'), complaintsRouter)
 app.use('/api/v1/officer', authenticateOfficer, roleAuthenticationMiddleware('officer'), officerRouter)
 app.use('/api/v1/tasks', authenticateOfficer, roleAuthenticationMiddleware('officer'), tasksRouter)

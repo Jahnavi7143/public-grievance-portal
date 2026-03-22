@@ -12,7 +12,7 @@ function FileNewGrievance(props) {
  let config = {
    method: "post",
    maxBodyLength: Infinity,
-   url: "http://localhost:3000/api/v1/complaints/",
+   url: "http://localhost:3000/api/v1/complaints",
    headers: {
      Authorization:
        `Bearer ${token}`,
@@ -37,9 +37,20 @@ function FileNewGrievance(props) {
           alert("Grievance Filed Successfully")
           window.location.reload(true);
         })
+        // .catch((error) => {
+        //   console.log(error);
+        //   alert("Error Occured:"+error.response.data.message);
+        // });
         .catch((error) => {
           console.log(error);
-          alert("Error Occured:"+error.response.data.message);
+
+          if (error.response) {
+            alert("Error: " + error.response.data.message);
+          } else {
+            alert("Server not responding");
+          }
+
+          setLoading(false);
         });
     }
 
@@ -52,7 +63,7 @@ function FileNewGrievance(props) {
   }
   return (
     <>
-      {checkLogin}
+      {checkLogin()}
 
       <div
         className={
