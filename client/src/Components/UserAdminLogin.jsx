@@ -64,155 +64,106 @@ function Login(props){
   };
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <Navbar />
-      <div className="flex-row md:flex  md:h-100 mt-0 ">
-        <div className="  px-8 md:w-2/3 ">
-          <div className="md:px-20 px-10 pt-20  md:pt-48 py-20 ">
-            <div className="w-full md:w-2/3 h-64 ">
-              <h2 className=" mt-0 text-6xl font-bold text-dark-blue">आवाज़</h2>
-
-              <p className=" mt-4 text  md:text-2xl text-dark-blue ">
-                This web application allows the concerned users and admins to
-                communicate regarding the grievances with the provided features
-                in order to simplify the tedious procedure of listing the
-                grievances.
-              </p>
-            </div>
+      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] bg-slate-100/50">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden transform transition-all">
+          <div className="bg-slate-900 px-8 py-6 border-b border-amber-500 text-center">
+            <h2 className="text-3xl font-extrabold text-white tracking-tight">Portal Access</h2>
+            <p className="text-slate-300 text-sm mt-2">Sign in to your account</p>
           </div>
-        </div>
-
-        <div className=" md:px-36 px-10 py-20  bg-dark-blue">
-          <div className="">
-            <p className="mt-3  text-2xl text-white">
-              Sign in to access your account
-            </p>
-          </div>
-
-          <div className="mt-8">
-            <div>
+          
+          <div className="px-8 py-8">
+            <div className="space-y-6">
               <div>
-                <label htmlFor="email" className="block text-sm text-white">
+                <label htmlFor="email" className="block text-sm font-semibold text-slate-700 mb-1">
                   Email Address
                 </label>
                 <input
                   type="email"
                   name="email"
                   id="email"
-                  placeholder="example@example.com"
-                  className="block w-full px-4 py-2 mt-2 bg-white rounded-md"
-                  onChange={(e) => {
-                    handleChange(e);
-                  }}
+                  placeholder="name@example.com"
+                  className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                  onChange={handleChange}
                 />
               </div>
 
-              <div className="mt-6">
-                <div className="flex justify-between mb-2">
-                  <label htmlFor="password" className="text-sm text-white">
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <label htmlFor="password" className="text-sm font-semibold text-slate-700">
                     Password
                   </label>
                   <button
-                    href="#"
-                    className="text-sm text-gray-400 text-white hover:underline"
+                    type="button"
+                    className="text-xs font-semibold text-amber-600 hover:text-amber-500 transition-colors"
                     onClick={forgotPassword}
                   >
                     Forgot password?
                   </button>
                 </div>
-                <div className="flex justify-center">
+                <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
                     name="password"
                     id="password"
-                    placeholder="Your Password"
-                    className="block w-full px-4 py-2 mt-2 bg-white  rounded-md"
-                    onChange={(e) => {
-                      handleChange(e);
-                    }}
+                    placeholder="Enter password"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                    onChange={handleChange}
                   />
                   <button
+                    type="button"
                     onClick={togglePasswordVisibility}
-                    className="text-white p-2 rounded-3xl m-auto  "
+                    className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm font-medium text-slate-500 hover:text-slate-700"
                   >
                     {showPassword ? "Hide" : "Show"}
                   </button>
                 </div>
               </div>
 
-              <div className="mb-2 mt-8 py-1">
-                <input
-                  checked
-                  id="default-radio-1"
-                  type="radio"
-                  value="Citizen"
-                  name="default-radio"
-                  className="w-4 h-4   focus:ring-blue-500 "
-                  onClick={handleRadio}
-                />
-                <label
-                  htmlFor="default-radio-1"
-                  className="ml-3 text-l  text-white"
-                >
-                  Citizen
-                </label>
-              </div>
-              <div className=" mb-2 mt-2 flex items-center py-0">
-                <input
-                  id="default-radio-2"
-                  type="radio"
-                  value="Officer"
-                  name="default-radio"
-                  className="w-4 h-4  focus:ring-blue-500"
-                  onClick={handleRadio}
-                />
-                <label
-                  htmlFor="default-radio-2"
-                  className="ml-3 text-l  text-white"
-                >
-                  Officer
-                </label>
-              </div>
-              <div className="mt-2 flex items-center py-0">
-                <input
-                  id="default-radio-2"
-                  type="radio"
-                  value="Admin"
-                  name="default-radio"
-                  className="w-4 h-4  focus:ring-blue-500"
-                  onClick={handleRadio}
-                />
-                <label
-                  htmlFor="default-radio-2"
-                  className="ml-3 text-l  text-white"
-                >
-                  Admin
-                </label>
+              <div className="pt-2">
+                <p className="text-sm font-semibold text-slate-700 mb-3">Login Role</p>
+                <div className="grid grid-cols-3 gap-3">
+                  <label className={`cursor-pointer border rounded-lg py-2 px-3 flex items-center justify-center transition-colors ${user === 'Citizen' ? 'bg-amber-50 border-amber-500 text-amber-700 ring-1 ring-amber-500' : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'}`}>
+                    <input type="radio" value="Citizen" name="role" className="sr-only" onChange={handleRadio} checked={user==='Citizen'} />
+                    <span className="text-sm font-medium">Citizen</span>
+                  </label>
+                  <label className={`cursor-pointer border rounded-lg py-2 px-3 flex items-center justify-center transition-colors ${user === 'Officer' ? 'bg-amber-50 border-amber-500 text-amber-700 ring-1 ring-amber-500' : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'}`}>
+                    <input type="radio" value="Officer" name="role" className="sr-only" onChange={handleRadio} checked={user==='Officer'} />
+                    <span className="text-sm font-medium">Officer</span>
+                  </label>
+                  <label className={`cursor-pointer border rounded-lg py-2 px-3 flex items-center justify-center transition-colors ${user === 'Admin' ? 'bg-amber-50 border-amber-500 text-amber-700 ring-1 ring-amber-500' : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'}`}>
+                    <input type="radio" value="Admin" name="role" className="sr-only" onChange={handleRadio} checked={user==='Admin'} />
+                    <span className="text-sm font-medium">Admin</span>
+                  </label>
+                </div>
               </div>
 
-              <div className="mt-6 flex justify-center ">
+              <div className="pt-4">
                 <button
-                  className="w-1/2 hover:animate-bounce  px-4 py-2  text-white bg-light-green rounded-md"
                   onClick={handleSubmit}
+                  disabled={loading}
+                  className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-white bg-slate-900 hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-colors active:scale-95"
                 >
-                  Sign in
+                  {loading && <div className="w-5 h-5 border-2 border-white rounded-full border-t-transparent animate-spin"></div>}
+                  Secure Sign In
                 </button>
-                {loading && <Loading />}
               </div>
             </div>
 
-            <p className="mt-6 text-sm text-center text-white">
-              Don't have an account yet?{" "}
-              <NavLink to="/" className="text-light-green hover:underline">
-                Sign up
-              </NavLink>
-              .
-            </p>
+            <div className="mt-8 text-center border-t border-slate-100 pt-6">
+              <p className="text-sm text-slate-600">
+                Don't have an account yet?{" "}
+                <NavLink to="/" className="font-bold text-slate-900 hover:text-amber-600 transition-colors">
+                  Sign up
+                </NavLink>
+              </p>
+            </div>
           </div>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

@@ -29,37 +29,30 @@ export default function UserPage(){
     }
     const[visible,setVisible]=React.useState("profile")
    return (
-     <div className={token==null?"hidden":""}>
-       <div className="User-Page">
-         <div className="navbar hidden md:block">
-           <UserNavbar
-             first=""
-             second=""
-             third=""
-             button="logout"
-             hidden={true}
-           />
-         </div>
-         <div className="navbar md:hidden">
-           <UserNavbar
-             first="HOME"
-             second="GRIEVANCE"
-             third="NEW"
-             fourth="UPDATE PROFILE"
-             hidden={true}
-             handle={handleClick}
-           />
-         </div>
-         <div className="User-page-content h-100 hidden md:flex">
-           <Dashboard
-             clicked={isClicked}
-             visible={visible}
-             handle={handleClick}
-             first={"HOME"}
-             second="MY GRIEVANCE"
-             third="NEW GRIEVANCE"
-             fourth="UPDATE PROFILE"
-           />
+    <div className={`min-h-screen bg-slate-50 font-sans flex flex-col ${token == null ? "hidden" : ""}`}>
+      {/* Top Navigation */}
+      <UserNavbar
+        first="HOME"
+        second="GRIEVANCE"
+        third="NEW"
+        fourth="UPDATE PROFILE"
+        handle={handleClick}
+      />
+      
+      {/* Main Content Area */}
+      <div className="flex-grow flex flex-col md:flex-row relative items-stretch">
+        <Dashboard
+          clicked={isClicked}
+          visible={visible}
+          handle={handleClick}
+          first="HOME"
+          second="MY GRIEVANCE"
+          third="NEW GRIEVANCE"
+          fourth="UPDATE PROFILE"
+        />
+        
+        {/* Content Container */}
+        <div className="flex-1 overflow-x-hidden p-6 md:p-10 bg-slate-50">
            <UserProfile
              visible={visible}
              uName={"Vishesh Vijayvargiya"}
@@ -70,21 +63,10 @@ export default function UserPage(){
            <FileNewGrievance visible={visible} />
            <MyGrievance visible={visible} />
            <UpdateUserProfile visible={visible} />
-         </div>
-         <div className="User-page-content h-100 md:hidden relative">
-           <UserProfile
-             visible={visible}
-             uName={"Vishesh Vijayvargiya"}
-             mail={"iit2021114@iiita.ac.in"}
-             contact={"0123456789"}
-             address={"PlotNo.-2,East Vinod Nagar,Delhi"}
-           />
-           <FileNewGrievance visible={visible} />
-           <MyGrievance visible={visible} />
-           <UpdateUserProfile visible={visible} />
-         </div>
-         <Footer className="z-10" />
-       </div>
-     </div>
+        </div>
+      </div>
+      
+      <Footer />
+    </div>
    ); 
 }

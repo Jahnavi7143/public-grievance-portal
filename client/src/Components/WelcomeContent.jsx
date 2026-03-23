@@ -874,155 +874,139 @@ const navigate=useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   return (
     <>
-      <div className="welcome-content flex-row md:flex justify-between md:h-100">
-        <div className="w-full md:w-2/3 h-64 ">
-          <h1 className="pl-0 md:pl-32 text-center md:text-left text-5xl md:text-7xl pt-16 md:pt-48 font-semibold text-dark-blue">
-            WELCOME TO
-            <br /> <span className="text-6xl md:text-9xl">आवाज़</span>
-          </h1>
-          <h3 className="text-center md:text-left pl-0 md:pl-32 text-l md:text-2xl text-dark-blue mt-2 md:mt-6 mb-8 md:mb-0">
-            An initiative by Government of India
-          </h3>
-        </div>
-        <div className="w-3/4 m-auto mt-2 mb-10  md:mb-0 md:m-0 rounded-md md:rounded-none md:w-1/3 bg-dark-blue overflow-hidden">
-          <h1 className="text-3xl md:text-4xl text-white ml-16 md:ml-0 md:text-left  md:pl-16 pt-8 md:pt-20 md:mb-8">
-            SIGN UP
-          </h1>
-          <div action="">
-            <input
-              type="text"
-              name="name"
-              id="name"
-              placeholder="Name"
-              className="w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mt-4 mb-4 md:m-0 md:mt-4"
-              onChange={handleChange}
-            />
-
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              className="w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-              onChange={handleChange}
-            />
-            <div className="flex justify-center items-center">
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                id="password"
-                placeholder="Password(min 6)"
-                className="form-control w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-                ref={password}
-                onChange={handleChange}
-              />
-              <button
-                onClick={togglePasswordVisibility}
-                className="text-white p-2 rounded-3xl m-auto  "
-              >
-                {showPassword ? "Hide" : "Show"}
-              </button>
+      <div className="w-full bg-slate-50">
+        <div className="relative bg-slate-900 border-b border-slate-800">
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 left-1/4 w-full h-full bg-slate-800/20 transform -skew-x-12"></div>
+          </div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 flex flex-col md:flex-row gap-12 items-center justify-between">
+            <div className="w-full md:w-1/2 text-center md:text-left z-10">
+              <span className="inline-block py-1 px-3 rounded-md bg-amber-500/10 text-amber-500 text-sm font-semibold tracking-wider uppercase mb-4 border border-amber-500/20">Official Portal</span>
+              <h1 className="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Welcome to <br /> <span className="text-5xl md:text-7xl text-amber-500">आवाज़</span>
+              </h1>
+              <p className="text-lg md:text-xl text-slate-300 max-w-xl mx-auto md:mx-0 leading-relaxed">
+                Centralized Public Grievance Redress And Monitoring System. A transparent, effective, and accessible initiative by the Government of India.
+              </p>
             </div>
+            
+            <div className="w-full md:w-5/12 max-w-md z-10 transition-all duration-300 hover:shadow-2xl">
+              <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-slate-200">
+                <div className="bg-slate-100 px-8 py-6 border-b border-slate-200">
+                  <h3 className="text-2xl font-bold text-slate-800 text-center tracking-tight">Citizen Registration</h3>
+                  <p className="text-sm text-slate-500 text-center mt-1">Create an account to lodge a grievance</p>
+                </div>
+                
+                <div className="px-8 py-6">
+                  <div className="space-y-4">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="Full Name"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                      onChange={handleChange}
+                    />
+                    
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      placeholder="Email Address"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                      onChange={handleChange}
+                    />
 
-            <input
-              type={showPassword ? "text" : "password"}
-              name="confirmPassword"
-              id="confirmPassword"
-              placeholder="Confirm Password"
-              className={
-                cPasswordClass +
-                ` w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4`
-              }
-              onChange={checkPasswords}
-              ref={cPassword}
-            />
-            <input
-              type="phone"
-              name="phone"
-              id="phone"
-              placeholder="Phone Number"
-              className="form-control w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-              onChange={handleChange}
-            />
+                    <div className="relative">
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        id="password"
+                        placeholder="Password (Min. 6 chars)"
+                        className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                        ref={password}
+                        onChange={handleChange}
+                      />
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        className="absolute right-3 top-3 text-sm text-slate-500 hover:text-slate-800 font-medium"
+                      >
+                        {showPassword ? "Hide" : "Show"}
+                      </button>
+                    </div>
 
-            <div className="w-80 hidden justify-between mt-4 ml-16 md:flex md:visible">
-              <select
-                value={data.district}
-                name="district"
-                onChange={handleChange}
-                className="rounded-md w-48 p-2 md:p-3"
-              >
-                <option value="">-- Select District --</option>
-                {districts.map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="number"
-                name="age"
-                id="age"
-                placeholder="Age(>18)"
-                className="rounded-md w-24 p-2 md:p-3"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="md:hidden">
-              <input
-                type="text"
-                name="district"
-                id="district"
-                value={data.district}
-                placeholder="District"
-                className="w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-                onChange={handleChange}
-              />
-              <select
-                value={data.district}
-                name="district"
-                onChange={handleChange}
-                className="w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-              >
-                <option value="">-- Select District --</option>
-                {districts.map((district) => (
-                  <option key={district} value={district}>
-                    {district}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="number"
-                name="age"
-                id="age"
-                placeholder="age(>18)"
-                className="w-48 md:w-80 p-2 md:p-3 rounded-md md:ml-16 ml-12 mb-4  md:m-0 md:mt-4"
-                onChange={handleChange}
-              />
-            </div>
-            <div className="m-auto md:ml-16 ml-12 mb-8">
-              <div className="flex items-center mt-4 text-white">
-                <button type="button" onClick={handleLocation}>
-                  <img src={location} alt="" className="h-6 w-6" />
-                </button>
-                <h4>Click to set your location</h4>
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      placeholder="Confirm Password"
+                      className={`w-full px-4 py-3 bg-slate-50 border ${showErrorMessage ? 'border-red-500 focus:ring-red-500' : 'border-slate-300 focus:ring-amber-500'} rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:bg-white transition-colors`}
+                      onChange={checkPasswords}
+                      ref={cPassword}
+                    />
+
+                    <input
+                      type="tel"
+                      name="phone"
+                      id="phone"
+                      placeholder="Mobile Number"
+                      className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                      onChange={handleChange}
+                    />
+
+                    <div className="flex gap-4">
+                      <select
+                        value={data.district}
+                        name="district"
+                        onChange={handleChange}
+                        className="w-2/3 px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors appearance-none"
+                      >
+                        <option value="">-- Select District --</option>
+                        {districts.map((district) => (
+                          <option key={district} value={district}>
+                            {district}
+                          </option>
+                        ))}
+                      </select>
+                      
+                      <input
+                        type="number"
+                        name="age"
+                        id="age"
+                        placeholder="Age"
+                        min="18"
+                        className="w-1/3 px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <div className="flex items-center justify-between text-sm mt-2">
+                        <button type="button" onClick={handleLocation} className="flex items-center text-amber-600 hover:text-amber-700 font-medium transition-colors">
+                          <img src={location} alt="" className="h-4 w-4 mr-1 opacity-70" />
+                          Detect Location
+                        </button>
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-all duration-200 mt-4 flex justify-center items-center shadow-md active:scale-95"
+                      onClick={handleSubmit}
+                    >
+                      {loading ? <span className="animate-pulse">Processing...</span> : "Create Account"}
+                    </button>
+                    
+                    <div className="text-center mt-6 pt-4 border-t border-slate-100">
+                      <p className="text-sm text-slate-600">
+                        Already have an account?{" "}
+                        <NavLink to="/userlogin" className="font-bold text-slate-900 hover:text-amber-600 transition-colors">
+                          Login here
+                        </NavLink>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-white mt-4">
-                Already have an account?{" "}
-                <NavLink to="/userlogin" className="text-light-green">
-                  Login
-                </NavLink>
-              </h3>
-            </div>
-            <div className="w-80 flex justify-center mt-2 md:mt-2 ml-16  ">
-              <button
-                type="submit"
-                className="hover:animate-bounce ml-0 md:ml-16 md:w-48 bg-light-green text-white p-3 rounded-3xl m-auto mb-4 md:m-auto  "
-                onClick={handleSubmit}
-              >
-                Create Account
-              </button>
-              {loading && <Loading />}
             </div>
           </div>
         </div>

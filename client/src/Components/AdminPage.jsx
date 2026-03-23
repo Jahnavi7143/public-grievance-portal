@@ -19,51 +19,37 @@ export default function AdminPage(){
     const token=localStorage.getItem("token")
     const[visible,setVisible]=React.useState("profile")
    return (
-     <div className={token==null?"":"admin-Page h-3/4 "}>
-       <div className="navbar hidden md:block">
-         <UserNavbar
-           first=""
-           second=""
-           third=""
-           button="logout"
-           hidden={true}
-         />
-       </div>
-       <div className="navbar md:hidden">
-         <UserNavbar
-           first="HOME"
-           second="STATUS"
-           third="UPDATE"
-           fourth=""
-           hidden={true}
-           handle={handleClick}
-         />
-       </div>
-       <div className="User-page-content h-100 hidden md:flex">
-         <Dashboard
-           clicked={isClicked}
-           visible={visible}
-           handle={handleClick}
-           first="HOME"
-           second="GRIEVANCES STATUS"
-           third="UPDATE STATUS"
-           fourth=""
-         />
-         <AdminProfile
-           visible={visible}
-         />
-         <GrievanceStatus visible={visible} />
-         <UpdateStatus visible={visible} />
-       </div>
-       <div className="User-page-content h-100 md:hidden relative">
-         <AdminProfile
-           visible={visible}
-         />
-
-         <GrievanceStatus visible={visible} />
-         <UpdateStatus visible={visible} />
-       </div>
+    <div className={`min-h-screen bg-slate-50 font-sans flex flex-col ${token == null ? "hidden" : ""}`}>
+      {/* Top Navigation */}
+      <UserNavbar
+        first="HOME"
+        second="STATUS"
+        third="UPDATE"
+        fourth=""
+        handle={handleClick}
+      />
+      
+      {/* Main Content Area */}
+      <div className="flex-grow flex flex-col md:flex-row relative items-stretch">
+        <Dashboard
+          clicked={isClicked}
+          visible={visible}
+          handle={handleClick}
+          first="HOME"
+          second="GRIEVANCES STATUS"
+          third="UPDATE STATUS"
+          fourth=""
+        />
+        
+        {/* Content Container */}
+        <div className="flex-1 overflow-x-hidden p-6 md:p-10 bg-slate-50">
+          <AdminProfile visible={visible} />
+          <GrievanceStatus visible={visible} />
+          <UpdateStatus visible={visible} />
+        </div>
+      </div>
+      
       <Footer />
-     </div>
+    </div>
    ); 
 }

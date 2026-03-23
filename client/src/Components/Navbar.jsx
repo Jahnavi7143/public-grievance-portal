@@ -4,18 +4,25 @@ import { NavLink } from "react-router-dom";
 export default function Navbar(props){   
     return (
       <>
-        <nav className="navigation-bar w-full bg-dark-cyan h-40 md:h-20 flex-row md:flex items-center md:items-center justify-between text-white sticky top-0 ">
-          <div className="w-48 md:nav-left flex items-center mx-auto justify-between md:m-0 pt-4 md:pt-0 ">
-            <img src={NAVLOGO} alt="" className="h-14 md:ml-12" />
-            <h1 className="text-4xl mb-1 ml-4 p-0">आवाज़</h1>
-          </div>
-          <div className="md:nav-right w-11/12 md:w-80  flex justify-evenly mx-auto md:ml-20 md:m-0 md:mr-8 mt-6 md:mt-0   ">
-            <NavLink to="/">
-              <h3 className="text-center">HOME</h3>
-            </NavLink>
-            <NavLink to="/userlogin">
-              <h3 className="text-center">LOGIN</h3>
-            </NavLink>
+        <nav className="w-full bg-slate-900 border-b border-amber-500 shadow-md sticky top-0 z-50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-20">
+              <div className="flex items-center space-x-4">
+                <img src={NAVLOGO} alt="Logo" className="h-12 w-auto" />
+                <div className="flex flex-col">
+                   <h1 className="text-2xl font-bold tracking-wider leading-tight text-white m-0 p-0">आवाज़</h1>
+                   <span className="text-[10px] uppercase tracking-widest text-slate-300">Public Grievance Portal</span>
+                </div>
+              </div>
+              <div className="flex items-center space-x-8">
+                <NavLink to="/" className={({ isActive }) => `text-sm font-semibold uppercase tracking-wider transition-colors duration-200 ${isActive ? 'text-amber-500' : 'text-slate-300 hover:text-white'}`}>
+                  HOME
+                </NavLink>
+                <NavLink to="/userlogin" className={({ isActive }) => `text-sm font-semibold uppercase tracking-wider transition-colors duration-200 px-5 py-2 rounded-md border ${isActive ? 'bg-amber-600 border-amber-600 text-white shadow-sm' : 'border-slate-500 text-slate-200 hover:border-amber-500 hover:text-amber-400'}`}>
+                  LOGIN
+                </NavLink>
+              </div>
+            </div>
           </div>
         </nav>
       </>

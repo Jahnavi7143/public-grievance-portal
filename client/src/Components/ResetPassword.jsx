@@ -62,79 +62,79 @@ export default function ForgotPassword() {
 
 
   return (
-    <>
+    <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
       <Navbar />
-      <div className="p-8 flex justify-center">
-        <div className=" md:px-36 px-10 py-20 h-100  md:w-1/2 rounded-2xl  bg-dark-blue">
-          <div className="">
-            <p className="mt-3 text-2xl font-semibold  md:text-4xl text-center  text-white">
-              Forgot password?
-            </p>
-            <p className="md:mt-24 text-center md:text-2xl text-white">
-              Enter your new password
-            </p>
+      <div className="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden">
+          <div className="bg-slate-900 px-8 py-6 border-b border-amber-500 text-center">
+            <h2 className="text-2xl font-extrabold text-white tracking-tight">Reset Password</h2>
+            <p className="text-slate-300 text-sm mt-2">Create a new password for your account</p>
           </div>
-          <div className="mt-24">
-            <div className="border-black">
-              <div>
-                <label htmlFor="password" className="block text-sm text-white">
-                  Password
-                </label>
+          
+          <div className="px-8 py-8 space-y-5">
+            <div>
+              <label htmlFor="password" className="block text-sm font-semibold text-slate-700 mb-1">
+                New Password
+              </label>
+              <div className="relative">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   id="password"
-                  className="block w-full px-4 py-2 mt-2 bg-white rounded-md"
-                  onChange={(e) => {
-                    handleChangePassword(e);
-                  }}
+                  placeholder="Enter new password"
+                  className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                  onChange={handleChangePassword}
                 />
-                <button onClick={togglePasswordVisibility}>
+                <button
+                  type="button"
+                  onClick={togglePasswordVisibility}
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm font-medium text-slate-500 hover:text-slate-700"
+                >
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
-              <div>
-                <label htmlFor="cpassword" className="block text-sm text-white">
-                  Confirm password
-                </label>
-                <input
-                  type="password"
-                  name="cpassword"
-                  id="cpassword"
-                  className="block w-full px-4 py-2 mt-2 bg-white rounded-md"
-                  onChange={(e) => {
-                    handleChangeCPassword(e);
-                  }}
-                />
-              </div>
-              <div>
-                <label htmlFor="token" className="block text-sm text-white">
-                  Token
-                </label>
-                <input
-                  type="text"
-                  name="token"
-                  id="token"
-                  className="block w-full px-4 py-2 mt-2 bg-white rounded-md"
-                  onChange={(e) => {
-                    handleChangePassword(e);
-                  }}
-                />
-              </div>
             </div>
-            <div className="mt-6 flex justify-center ">
-              <button
-                className="w-1/2 hover:animate-bounce  px-4 py-2  text-white bg-light-green rounded-md"
-                onClick={handleSubmit}
-              >
-                Sign in
-              </button>
-              {loading && <Loading />}
+
+            <div>
+              <label htmlFor="cpassword" className="block text-sm font-semibold text-slate-700 mb-1">
+                Confirm Password
+              </label>
+              <input
+                type="password"
+                name="cpassword"
+                id="cpassword"
+                placeholder="Confirm new password"
+                className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                onChange={handleChangeCPassword}
+              />
             </div>
+
+            <div>
+              <label htmlFor="token" className="block text-sm font-semibold text-slate-700 mb-1">
+                Reset Token
+              </label>
+              <input
+                type="text"
+                name="token"
+                id="token"
+                placeholder="Enter token from email"
+                className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors tracking-widest text-center"
+                onChange={handleChangePassword}
+              />
+            </div>
+            
+            <button
+              onClick={handleSubmit}
+              disabled={loading}
+              className="w-full flex justify-center items-center gap-2 py-3 px-4 border border-transparent rounded-lg shadow-sm text-base font-bold text-white bg-amber-600 hover:bg-amber-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-amber-500 transition-colors active:scale-95 mt-6"
+            >
+              {loading && <div className="w-5 h-5 border-2 border-white rounded-full border-t-transparent animate-spin"></div>}
+              Reset Password
+            </button>
           </div>
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }

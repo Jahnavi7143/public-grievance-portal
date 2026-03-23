@@ -64,85 +64,85 @@ function FileNewGrievance(props) {
   return (
     <>
       {checkLogin()}
+      <div className={props.visible == "new" ? "p-4 md:p-8 w-full max-w-4xl mx-auto" : "hidden"}>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-slate-900 px-8 py-6 border-b border-amber-500">
+            <h1 className="text-2xl font-bold text-white tracking-wide">File New Grievance</h1>
+            <p className="text-slate-300 text-sm mt-1">Submit a detailed report to the concerned department</p>
+          </div>
+          
+          <div className="p-8">
+            <form className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="Dept">
+                    Department
+                  </label>
+                  <select
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                    onChange={(e) => handleChange(e)}
+                    name="department"
+                    value={data.department}
+                  >
+                    <option value="">-- SELECT DEPARTMENT --</option>
+                    <option value="Education">Education</option>
+                    <option value="Health">Health</option>
+                    <option value="Transport">Transport</option>
+                    <option value="Pension">Pension</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
 
-      <div
-        className={
-          props.visible == "new"
-            ? "p-4 update-profile-content dashboard w-full md:w-3/4 h-100  pt-10"
-            : "hidden"
-        }
-      >
-        <h1 className="md:text-7xl text-4xl font-bold text-black capitalize dark:text-black py-4 text-center px-20  ">
-          File New Grievance
-        </h1>
-        <div className='flex justify-center'>
-          <form className="border-2 shadow-2xl p-6 mt-8 w-11/12 md:w-4/6 rounded-xl">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 px-4">
-              <div>
-                <label className="text-black dark:text-gray-200" htmlFor="Dept">
-                  Department
-                </label>
-                <select
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                  onChange={(e) => handleChange(e)}
-                  name="department"
-                  value={data.department}
-                >
-                  <option>--SELECT--</option>
-                  <option value="Education">Education</option>
-                  <option value="Health">Health</option>
-                  <option value="Transport">Transport</option>
-                  <option value="Pension">Pension</option>
-                  <option value="other">other</option>
-                </select>
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="Subject">
+                    Subject
+                  </label>
+                  <input
+                    id="Subject"
+                    name="subject"
+                    type="text"
+                    placeholder="Brief subject of grievance"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                    onChange={(e) => handleChange(e)}
+                  />
+                </div>
               </div>
 
               <div>
-                <label
-                  className="text-black dark:text-gray-200"
-                  htmlFor="Subject"
-                >
-                  Subject
-                </label>
-                <input
-                  id="Subject"
-                  name="subject"
-                  type="text"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                  onChange={(e) => handleChange(e)}
-                />
-                {loading == true && <Loading />}
-              </div>
-              <div>
-                <label
-                  className="text-black dark:text-gray-200"
-                  htmlFor="passwordConfirmation"
-                >
-                  Write your complaint
+                <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="textarea">
+                  Detailed Complaint
                 </label>
                 <textarea
                   id="textarea"
                   name="description"
-                  type="textarea"
-                  className="block w-full px- py-8 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                  rows="6"
+                  placeholder="Provide all necessary details regarding your grievance..."
+                  className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors resize-none mb-3"
                   onChange={(e) => handleChange(e)}
                 ></textarea>
+                {loading == true && <Loading />}
               </div>
-            </div>
 
-            <div className="flex justify-around mt-6 " color="black">
-              <button
-                type="submit"
-                className="bg-light-green p-2 md:p-3 w-32 rounded-3xl text-white text-xl"
-                onClick={(e) => handleSubmit(e)}
-              >
-                Submit
-              </button>
-            </div>
-            <div className="text-light-green flex justify-center mt-3">
-              {submit ? "Your complaint has been filed" : ""}
-            </div>
-          </form>
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <div className="text-sm font-medium text-amber-600">
+                  {submit ? "✓ Your complaint has been filed successfully." : ""}
+                </div>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="flex items-center justify-center px-8 py-3 text-sm font-bold tracking-wider uppercase text-white bg-slate-900 border border-transparent rounded-lg shadow-sm hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-colors active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+                  onClick={(e) => handleSubmit(e)}
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                       <div className="w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin"></div>
+                       Processing...
+                    </span>
+                  ) : "Submit Grievance"}
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>

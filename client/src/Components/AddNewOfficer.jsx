@@ -50,121 +50,115 @@ export default function AddNewOfficer(props) {
       }
   return (
     <div>
-      {checkLogin}
-
-      <div
-        className={
-          props.visible == "new"
-            ? "p-4 update-profile-content dashboard w-max ml-48 h-100 mx-auto pt-10"
-            : "hidden"
-        }
-      >
-
-          <h1 className="md:text-7xl text-4xl font-bold text-black capitalize dark:text-black py-4 text-center px-10  ">
-            ADD NEW OFFICER
-          </h1>
-          <div className="flex justify-center">
-            <div className="border-2 shadow-2xl p-6 mt-8 w-11/12 md:w-4/6 rounded-xl">
-              <div className="grid grid-cols-1 gap-2 sm:grid-cols-1 px-4">
+      {checkLogin()}
+      <div className={props.visible == "new" ? "p-4 md:p-8 w-full max-w-4xl mx-auto" : "hidden"}>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-slate-900 px-8 py-6 border-b border-amber-500">
+            <h1 className="text-2xl font-bold text-white tracking-wide">Add New Officer</h1>
+            <p className="text-slate-300 text-sm mt-1">Register a new official into the grievance handling system</p>
+          </div>
+          
+          <div className="p-8">
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label
-                    className="text-black dark:text-gray-200"
-                    htmlFor="name"
-                  >
-                    Name:
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="name">
+                    Full Name
                   </label>
                   <input
                     id="name"
                     name="name"
                     type="text"
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    placeholder="Enter officer's name"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
                     onChange={(e) => handleChange(e)}
                   />
                 </div>
 
                 <div>
-                  <label
-                    className="text-black dark:text-gray-200"
-                    htmlFor="Subject"
-                  >
-                    level
-                  </label>
-                  <select
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
-                    value={data.level}
-                    name="level"
-                    onChange={(e) => handleChange(e)}
-                  >
-                    <option value={-1}>--Select--</option>
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                  </select>
-                  {loading == true && <Loading />}
-                </div>
-                <div>
-                  <label
-                    className="text-black dark:text-gray-200"
-                    htmlFor="Department"
-                  >
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="Department">
                     Department
                   </label>
                   <select
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
                     onChange={(e) => handleChange(e)}
                     name="department"
                     value={data.department}
                   >
-                    <option>--SELECT--</option>
+                    <option value="">-- SELECT DEPARTMENT --</option>
                     <option value="Education">Education</option>
                     <option value="Health">Health</option>
                     <option value="Transport">Transport</option>
                     <option value="Pension">Pension</option>
-                    <option value="other">other</option>
+                    <option value="other">Other</option>
                   </select>
                 </div>
+                
                 <div>
-                  <label
-                    className="text-black dark:text-gray-200"
-                    htmlFor="email"
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="level">
+                    Hierarchy Level
+                  </label>
+                  <select
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
+                    value={data.level}
+                    name="level"
+                    onChange={(e) => handleChange(e)}
                   >
-                    Email:
+                    <option value={-1}>-- SELECT LEVEL --</option>
+                    <option value={1}>1 - Gram Panchayat</option>
+                    <option value={2}>2 - Tehsildar</option>
+                    <option value={3}>3 - Municipal Corp</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="email">
+                    Official Email
                   </label>
                   <input
                     id="email"
                     name="email"
-                    type="text"
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    type="email"
+                    placeholder="officer@example.gov.in"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
                     onChange={(e) => handleChange(e)}
                   />
                 </div>
-                <div>
-                  <label
-                    className="text-black dark:text-gray-200"
-                    htmlFor="password"
-                  >
-                    Password:
+
+                <div className="md:col-span-2 relative">
+                  <label className="block text-sm font-semibold text-slate-700 mb-2" htmlFor="password">
+                    Temporary Password
                   </label>
                   <input
                     id="password"
                     name="password"
-                    type="text"
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+                    type="password"
+                    placeholder="Assign a secure starting password"
+                    className="block w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:bg-white transition-colors"
                     onChange={(e) => handleChange(e)}
                   />
+                  {loading == true && <div className="mt-2"><Loading /></div>}
                 </div>
+              </div>
+
+              <div className="pt-6 border-t border-slate-100 flex justify-end">
+                <button
+                  disabled={loading}
+                  className="flex items-center justify-center px-8 py-3 text-sm font-bold tracking-wider uppercase text-white bg-slate-900 border border-transparent rounded-lg shadow-sm hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 transition-colors active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed"
+                  onClick={handleSubmit}
+                >
+                  {loading ? (
+                    <span className="flex items-center gap-2">
+                       <div className="w-4 h-4 border-2 border-white rounded-full border-t-transparent animate-spin"></div>
+                       Registering...
+                    </span>
+                  ) : "Register Officer"}
+                </button>
               </div>
             </div>
           </div>
-          <div className="flex justify-around mt-6 " color="black">
-            <button
-              className="bg-light-green p-2 md:p-3 w-32 rounded-3xl text-white text-xl"
-              onClick={handleSubmit}
-            >
-              Register
-            </button>
-          </div>
         </div>
       </div>
+    </div>
   );
 }
