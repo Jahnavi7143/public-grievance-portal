@@ -33,9 +33,11 @@ function FileNewGrievance(props) {
         .then((response) => {
           console.log(JSON.stringify(response.data));
           setSubmit(true);
-          setLoading(false)
-          alert("Grievance Filed Successfully")
-          window.location.reload(true);
+          setLoading(false);
+          alert("Grievance Filed Successfully");
+          if (props.onSuccess) {
+            props.onSuccess();
+          }
         })
         // .catch((error) => {
         //   console.log(error);

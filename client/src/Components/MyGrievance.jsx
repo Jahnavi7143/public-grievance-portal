@@ -15,20 +15,20 @@ export default function MyGrievance(props) {
     },
   };
   const [grievances, setGrievances] = React.useState([]);
- grievances.sort(function (a, b) {
-   return a.status > b.status ? 1 : b.status > a.status ? -1 : 0;
- });
   React.useEffect(() => {
     axios
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        setGrievances(response.data.complaints);
+        const sortedComplaints = [...response.data.complaints].sort(function (a, b) {
+          return a.status > b.status ? 1 : b.status > a.status ? -1 : 0;
+        });
+        setGrievances(sortedComplaints);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [props.refreshTrigger]);
   const [isVisible, setIsVisible] = React.useState(false);
   const [actionHistory, setActionHistory] = React.useState();
   function handleAction(grievance){

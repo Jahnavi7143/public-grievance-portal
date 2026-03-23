@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from "axios";
 import Modal from "./Modal";
 import Loading from "./Loading";
@@ -19,7 +19,10 @@ export default function GrievanceStatus(props) {
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        setComplaints(response.data.tasks);
+        const sortedTasks = [...response.data.tasks].sort(function (a, b) {
+          return a.status > b.status ? 1 : b.status > a.status ? -1 : 0;
+        });
+        setComplaints(sortedTasks);
       })
       .catch((error) => {
         console.log(error);
@@ -62,9 +65,6 @@ export default function GrievanceStatus(props) {
       });  
     }
     const [loading, setLoading] = React.useState(false); 
-    complaints.sort(function (a, b) {
-      return a.status > b.status ? 1 : b.status > a.status ? -1 : 0;
-    });
    const complaintData = complaints.map((complaint, index) => (
      <Fragment key={index}>
        <tr className="border-b border-slate-100 hover:bg-slate-50 transition-colors">

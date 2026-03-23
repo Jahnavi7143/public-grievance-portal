@@ -184,8 +184,15 @@ const rateOfficer = async (req, res) => {
 
   const officer = await Officer.findOne({ _id: complaint.officerID });
 
+  let officerRating = await OfficerRatings.findOne({ OfficerId: complaint.officerID });
 
-  const officerRating = await OfficerRatings.findOne({ OfficerId: complaint.officerID });
+  if (!officerRating) {
+      officerRating = await OfficerRatings.create({
+          OfficerId: complaint.officerID,
+          avgRating: null,
+          ratings: [],
+      });
+  }
 
   // console.log(officerRating);
   await officerRating.addRating(numberofstars, complaintId, userId);

@@ -1,38 +1,41 @@
 import React, { Fragment } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Loading from "./Loading";
 export default function MyGrievance(props) {
+  const navigate = useNavigate();
   const [officerDetails, setOfficerDetails] = React.useState([]);
-  const token=localStorage.getItem("token");
-     let config = {
-       method: "get",
-       maxBodyLength: Infinity,
-       url: "http://localhost:3000/api/v1/manage/getOfficerData",
-       headers: {
-         Authorization: `Bearer ${token}`,
-       },
-     };
-     const [loading,setLoading]=React.useState(true)
+  const token = localStorage.getItem("token");
+  let config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: "http://localhost:3000/api/v1/manage/getOfficerData",
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  };
+  const [loading, setLoading] = React.useState(true)
   React.useEffect(() => {
     axios
       .request(config)
       .then((response) => {
         console.log(JSON.stringify(response.data));
-        setOfficerDetails(response.data.data);
-      
+        const sortedData = [...response.data.data].sort(function (a, b) {
+          return a.department > b.department ? 1 : b.department > a.department ? -1 : 0;
+        });
+        setOfficerDetails(sortedData);
         setLoading(false)
       })
       .catch((error) => {
         console.log(error);
+        if (error.response && error.response.status === 401) {
+          alert("Unauthorized. Please log in as an Admin.");
+          localStorage.removeItem("token");
+          navigate("/userlogin");
+        }
+        setLoading(false);
       });
-  },[])
-    officerDetails.sort(function (a, b) {
-      return a.department > b.department
-        ? 1
-        : b.department > a.department
-        ? -1
-        : 0;
-    });
+  }, [props.refreshTrigger])
   const officerData = officerDetails.map((officer, index) => (
     <Fragment key={index}>
       <tr className="border-b border-slate-100 hover:bg-slate-50 transition-colors">
@@ -66,7 +69,7 @@ export default function MyGrievance(props) {
       </tr>
     </Fragment>
   ));
-  
+
   function checkLogin() {
     if (!token) {
       navigate("/userAdminLogin");
@@ -85,7 +88,7 @@ export default function MyGrievance(props) {
             </div>
             {loading && <Loading />}
           </div>
-          
+
           <div className="overflow-x-auto overflow-y-auto hide-scrollbar flex-1 p-6 bg-slate-50">
             <div className="bg-white rounded-xl shadow-sm border border-slate-200">
               <table className="w-full text-left border-collapse">

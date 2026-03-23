@@ -8,9 +8,15 @@ import AddNewOfficer from './AddNewOfficer';
 export default function MainAdminPage() {
     const token=localStorage.getItem("token")
     const [isClicked, setIsClicked] = React.useState("1");
+    const [refreshTrigger, setRefreshTrigger] = React.useState(0);
     function handleClick(val, vis) {
       setIsClicked(val);
       setVisible(vis);
+    }
+    
+    function handleOfficerSuccess() {
+      setRefreshTrigger(prev => prev + 1);
+      handleClick("2", "view");
     }
     if (localStorage.getItem("token") == null) {
       window.location.href = "/userlogin";
@@ -42,8 +48,8 @@ export default function MainAdminPage() {
         {/* Content Container */}
         <div className="flex-1 overflow-x-hidden p-6 md:p-10 bg-slate-50">
           <MainAdminProfile visible={visible} />
-          <ViewOfficerDetails visible={visible} />
-          <AddNewOfficer visible={visible} />
+          <ViewOfficerDetails visible={visible} refreshTrigger={refreshTrigger} />
+          <AddNewOfficer visible={visible} onSuccess={handleOfficerSuccess} />
         </div>
       </div>
       

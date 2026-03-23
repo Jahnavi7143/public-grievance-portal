@@ -6,6 +6,7 @@ import GrievanceStatus from "./GrievanceStatus";
 import UpdateStatus from "./UpdateStatus"
 import UpdateAdminProfile from "./UpdateAdminProfile";
 import Footer from "./Footer";
+import ErrorBoundary from "./ErrorBoundary";
 export default function AdminPage(){
     const [isClicked,setIsClicked]=React.useState("1")
     function handleClick(val,vis){
@@ -43,9 +44,9 @@ export default function AdminPage(){
         
         {/* Content Container */}
         <div className="flex-1 overflow-x-hidden p-6 md:p-10 bg-slate-50">
-          <AdminProfile visible={visible} />
-          <GrievanceStatus visible={visible} />
-          <UpdateStatus visible={visible} />
+          <ErrorBoundary><AdminProfile visible={visible} /></ErrorBoundary>
+          <ErrorBoundary><GrievanceStatus visible={visible} /></ErrorBoundary>
+          <ErrorBoundary><UpdateStatus visible={visible} /></ErrorBoundary>
         </div>
       </div>
       

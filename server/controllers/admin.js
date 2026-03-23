@@ -68,13 +68,13 @@ const getOfficerData = async (req, res) => {
         }
 
         let rating = await OfficerRatings.findOne({ OfficerId: officer._id })
-        // console.log(pendingcnt, inprocesscnt, resolvedcnt, rating.avgRating)
+        // console.log(pendingcnt, inprocesscnt, resolvedcnt, rating?.avgRating)
         data.push({
             name: officer.name,
             email: officer.email,
             department: officer.department,
             level: officer.level,
-            avgRating: rating.avgRating,
+            avgRating: rating ? rating.avgRating : null,
             pendingCount: pendingcnt,
             inProcessCount: inprocesscnt,
             resolvedCount: resolvedcnt,

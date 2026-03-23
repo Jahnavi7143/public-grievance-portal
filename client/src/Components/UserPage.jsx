@@ -27,7 +27,13 @@ export default function UserPage(){
         setIsClicked(val)
         setVisible(vis)
     }
-    const[visible,setVisible]=React.useState("profile")
+    const [visible,setVisible]=React.useState("profile")
+    const [refreshTrigger, setRefreshTrigger] = React.useState(0)
+
+    function handleGrievanceSuccess() {
+        setRefreshTrigger(prev => prev + 1);
+        handleClick("2", "view");
+    }
    return (
     <div className={`min-h-screen bg-slate-50 font-sans flex flex-col ${token == null ? "hidden" : ""}`}>
       {/* Top Navigation */}
@@ -60,8 +66,8 @@ export default function UserPage(){
              contact={"0123456789"}
              address={"PLOT NO-2,EAST VINOD NAGAR, DELHI"}
            />
-           <FileNewGrievance visible={visible} />
-           <MyGrievance visible={visible} />
+           <FileNewGrievance visible={visible} onSuccess={handleGrievanceSuccess} />
+           <MyGrievance visible={visible} refreshTrigger={refreshTrigger} />
            <UpdateUserProfile visible={visible} />
         </div>
       </div>

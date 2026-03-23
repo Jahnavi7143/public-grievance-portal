@@ -80,6 +80,8 @@ export default function UpdateStatus(props) {
         })
         .catch((error) => {
           console.log(error);
+          alert("Error: " + (error.response?.data?.message || "Invalid Grievance ID"));
+          setLoading(false);
         });
     }
   }

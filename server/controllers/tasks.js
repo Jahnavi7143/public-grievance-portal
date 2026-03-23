@@ -30,9 +30,16 @@ const getTask = async (req, res) => {
     params: { id: complaintId },
   } = req;
 
-  const complaint = await Complaint.findOne({ _id: complaintId });
+  let complaint;
+  if (complaintId.length < 24) {
+    const tasks = await Complaint.find();
+    complaint = tasks.find(t => t._id.toString().endsWith(complaintId) || t._id.toString().toUpperCase().endsWith(complaintId.toUpperCase()));
+  } else {
+    complaint = await Complaint.findOne({ _id: complaintId });
+  }
+
   if (!complaint) {
-    throw new NotFoundError("Complaint not found");
+    throw new NotFoundError("Complaint not found with ID: " + complaintId);
   }
   res.status(StatusCodes.OK).json({ complaint });
 };
@@ -50,12 +57,20 @@ const passTask = async (req, res) => {
   // }
 
   const officer = await Officer.findOne({ _id: officerId });
-  const compl = await Complaint.findOne({ _id: complaintId })
-  if (!compl) {
-    throw new NotFoundError("complaint not found");
+  
+  let compl;
+  if (complaintId.length < 24) {
+    const tasks = await Complaint.find();
+    compl = tasks.find(t => t._id.toString().endsWith(complaintId) || t._id.toString().toUpperCase().endsWith(complaintId.toUpperCase()));
+  } else {
+    compl = await Complaint.findOne({ _id: complaintId });
   }
 
-  if (compl.officerID != officerId) {
+  if (!compl) {
+    throw new NotFoundError("Complaint not found with ID: " + complaintId);
+  }
+
+  if (compl.officerID.toString() != officerId) {
     throw new UnauthenticatedError("not authorized to update this task");
   }
   if (compl.status === "resolved") {
@@ -126,16 +141,22 @@ const updateTask = async (req, res) => {
 
   const officer = await Officer.findOne({ _id: officerId });
 
-  const complaint = await Complaint.findById(complaintId);
+  let complaint;
+  if (complaintId.length < 24) {
+    const tasks = await Complaint.find();
+    complaint = tasks.find(t => t._id.toString().endsWith(complaintId) || t._id.toString().toUpperCase().endsWith(complaintId.toUpperCase()));
+  } else {
+    complaint = await Complaint.findById(complaintId);
+  }
 
   if (!complaint) {
-    throw new NotFoundError("complaint not found");
+    throw new NotFoundError("Complaint not found with ID: " + complaintId);
   }
   if (complaint.status === "resolved") {
     throw new BadRequestError("Complaint already resolved. No more updations allowed.")
   }
 
-  if (complaint.officerID != officerId) {
+  if (complaint.officerID.toString() != officerId) {
     throw new UnauthenticatedError("not authorized to update this task");
   }
 

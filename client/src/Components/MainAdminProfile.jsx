@@ -1,8 +1,10 @@
 import React from 'react'
 import pfp from "../Images/pfp.png";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Loading from "./Loading";
 export default function MainAdminProfile(props) {
+    const navigate = useNavigate();
     const [adminData,setAdminData]=React.useState({})
     const token = localStorage.getItem("token");
     let config = {
@@ -15,7 +17,7 @@ export default function MainAdminProfile(props) {
           `Bearer ${token}`,
       },
     };
-    React.useState(() => {
+    React.useEffect(() => {
       axios
         .request(config)
         .then((response) => {
@@ -25,6 +27,12 @@ export default function MainAdminProfile(props) {
         })
         .catch((error) => {
           console.log(error);
+          if (error.response && error.response.status === 401) {
+            alert("Unauthorized. Please log in as an Admin.");
+            localStorage.removeItem("token");
+            navigate("/userlogin");
+          }
+          setLoading(false);
         }); 
     }, []);
     const [loading, setLoading] = React.useState(true);

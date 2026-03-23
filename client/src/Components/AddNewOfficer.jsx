@@ -40,7 +40,13 @@ export default function AddNewOfficer(props) {
               console.log(JSON.stringify(response.data));
               setLoading(false)
               alert("Officer Added Successfully")
-              window.location.reload(true);
+              
+              // Clear the form fields
+              setData({name: "", level: -1, department: "", email: "", password: ""});
+              
+              if (props.onSuccess) {
+                props.onSuccess();
+              }
             })
             .catch((error) => {
               console.log(error);
