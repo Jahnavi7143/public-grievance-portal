@@ -21,11 +21,10 @@ The Grievance Portal is a web application that provides a platform for users to 
 
 This project is contributed by the following team members:
 
-- Priyadarshini Roy
-- Vishesh Vijayvargiya
-- Utsav Singh Tomar
-- Mehak Gupta
-- Keshav Pandey
+- Bala Varshitha
+- Jahnavi
+- Sree Navya
+- Keerthi Mrunalini
 
 ## Installation
 
@@ -40,7 +39,7 @@ To run the Grievance Portal locally, follow these steps:
 
 ## Login Details
 
-- To login as a user, you need to register yourself first. If you need an existing account the credentials are email:"iit2021112@iiita.ac.in",password:"savvy123"
+- To login as a user, you need to register yourself first. If you need an existing account the credentials are email:"nichulu@gmail,.com",password:"123456"
 - To login as an officer, the format is [district][department][level(1,2 & 3)]@gmail.com and the password is "password".
 - To login as a district admin, the format is [district]admin@gmail.com and the password is "password".
 
@@ -52,8 +51,7 @@ The Grievance Portal project is open-source and released under the [IIITA Licens
 
 For any inquiries or suggestions regarding the Grievance Portal, please contact the project contributors:
 
-- Priyadarshini Roy: [iit2021133@iiita.ac.in](mailto:iit2021133@iiita.ac.in)
-- Vishesh Vijayvargiya: [iit2021114@iiita.ac.in](mailto:iit2021114@iiita.ac.in)
-- Utsav Singh Tomar: [iit2021112@iiita.ac.in](mailto:iit2021112@iiita.ac.in)
-- Mehak Gupta: [iit2021143@iiita.ac.in](mailto:iit2021143@iiita.ac.in)
-- Keshav Pandey: [iit2021173@iiita.ac.in](mailto:iit2021173@iiita.ac.in)
+- Bala Varshitha: [iit2023026@iiita.ac.in](mailto:iit2023026@iiita.ac.in)
+- Keerthi Mrunalini: [iit2023027@iiita.ac.in](mailto:iit2023027@iiita.ac.in)
+- Sree Navya: [iit2022128@iiita.ac.in](mailto:iit2023128@iiita.ac.in)
+- Jahnavi: [iit2023216@iiita.ac.in](mailto:iit2023216@iiita.ac.in)
