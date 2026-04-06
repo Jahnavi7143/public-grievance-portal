@@ -21,11 +21,11 @@ The Grievance Portal is a web application that provides a platform for users to 
 
 This project is contributed by the following team members:
 
-- Priyadarshini Roy
-- Vishesh Vijayvargiya
-- Utsav Singh Tomar
-- Mehak Gupta
-- Keshav Pandey
+- Varshitha 
+- Keerti
+- navya
+- jahnavi
+
 
 ## Installation
 
